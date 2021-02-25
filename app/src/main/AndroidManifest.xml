@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BmiCalc">
         <service
-            android:name=".BmiCalculatorService"
-            android:enabled="true"
-            android:exported="true"></service>
+            android:name=".BmiService"
+            android:exported="false" ></service>
 
         <activity android:name=".ResultActivity" />
         <activity android:name=".MainActivity">

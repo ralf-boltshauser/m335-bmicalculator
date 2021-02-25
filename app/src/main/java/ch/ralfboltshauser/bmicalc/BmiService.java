@@ -2,31 +2,41 @@ package ch.ralfboltshauser.bmicalc;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 
-public class BmiCalculatorService extends Service {
+import java.util.Random;
 
-    private float weight = 75;
-    private float height = 180;
+public class BmiService extends Service {
+    // Binder given to clients
+    private final IBinder binder = new LocalBinder();
+    // Random number generator
+    private final Random mGenerator = new Random();
 
-
-    public BmiCalculatorService() {
-    }
-
-    public static BmiCalculatorService bmiCalculatorService;
-
-    public static BmiCalculatorService getInstance(){
-        if (bmiCalculatorService == null) {
-            bmiCalculatorService = new BmiCalculatorService();
+    /**
+     * Class used for the client Binder.  Because we know this service always
+     * runs in the same process as its clients, we don't need to deal with IPC.
+     */
+    public class LocalBinder extends Binder {
+        BmiService getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return BmiService.this;
         }
-        return bmiCalculatorService;
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-
-        throw new UnsupportedOperationException("Not yet implemented");
+        return binder;
     }
+
+    /** method for clients */
+    public int getRandomNumber() {
+        return mGenerator.nextInt(100);
+    }
+
+
+    private float weight = 75;
+    private float height = 180;
 
     public float getWeight() {
         return weight;
@@ -71,4 +81,5 @@ public class BmiCalculatorService extends Service {
             return BmiClassification.getLevel(BmiClassificationEnum.OBESE);
         }
     }
+
 }
