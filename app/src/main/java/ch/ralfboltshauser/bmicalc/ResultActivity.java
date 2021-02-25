@@ -10,6 +10,8 @@ public class ResultActivity extends AppCompatActivity {
 
     private TextView bmiTextView;
     private TextView bmiRangeTextView;
+    
+    private BmiCalculatorService bmiCalculatorService = BmiCalculatorService.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onResume();
         bmiTextView = findViewById(R.id.bmiTextView);
         bmiRangeTextView = findViewById(R.id.bmiRangeTextView);
-        bmiTextView.setText(String.valueOf(MainActivity.bmiCalculatorService.getBmi()));
-        bmiRangeTextView.setText(String.valueOf(MainActivity.bmiCalculatorService.getBmiClassification()));
+        bmiTextView.setText(String.valueOf(bmiCalculatorService.getBmi()));
+        bmiRangeTextView.setText(String.valueOf(bmiCalculatorService.getBmiClassification()));
     }
 }

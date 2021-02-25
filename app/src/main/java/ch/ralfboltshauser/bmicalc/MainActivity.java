@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    static public BmiCalculatorService bmiCalculatorService = new BmiCalculatorService();
+    private BmiCalculatorService bmiCalculatorService = BmiCalculatorService.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

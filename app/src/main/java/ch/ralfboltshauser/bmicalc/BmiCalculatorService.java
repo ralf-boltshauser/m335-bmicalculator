@@ -13,6 +13,15 @@ public class BmiCalculatorService extends Service {
     public BmiCalculatorService() {
     }
 
+    public static BmiCalculatorService bmiCalculatorService;
+
+    public static BmiCalculatorService getInstance(){
+        if (bmiCalculatorService == null) {
+            bmiCalculatorService = new BmiCalculatorService();
+        }
+        return bmiCalculatorService;
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
 
